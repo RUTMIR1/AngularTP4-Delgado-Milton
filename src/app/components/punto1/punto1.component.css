@@ -1,0 +1,24 @@
+.fuente-blanca{
+    color:aliceblue;
+}
+
+.img-producto{
+   height: 300px;
+}
+
+.card-tamanio{
+    height: 80%;
+    width: 18rem;
+}
+
+.bg-morado1{
+    background-color: #31293F;
+}
+.bg-morado2{
+    background-color: #796EA8;
+}
+
+.btn:hover{
+    background-color: #1e0039;
+    color: aqua;
+}
