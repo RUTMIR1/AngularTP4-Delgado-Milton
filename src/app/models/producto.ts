@@ -1,14 +1,14 @@
 export class Producto {
     nombre!: String;
     descripcion!: String;
-    precio!: number;
+    valor!: number;
     imagen!: String;
     estado: boolean = false;
 
-    constructor(nombre:String , descripcion:String , precio:number , imagen:String){
+    constructor(nombre:String , descripcion:String , valor:number , imagen:String){
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.precio = precio; 
+        this.valor = valor; 
         this.imagen = imagen;
     }
 }

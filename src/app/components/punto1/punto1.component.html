@@ -1,7 +1,7 @@
 <section id="home-punto1" class="row bg-morado1 pb-5 mt-4 position-relative">
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 col-xxl-3 mt-5 mb-5" *ngFor="let producto of productos">
         <div class="card mx-auto card-tamanio h-100 bg-morado2 border border-primary">
-                <div class="bg-black d-flex justify-content-end fuente-blanca"> {{producto.precio}}$ </div>
+                <div class="bg-black d-flex justify-content-end fuente-blanca"> {{producto.valor}}$ </div>
                 <img [src]="producto.imagen" class="card-img-top img-producto" alt="imagen de producto">
                 <h4> {{producto.nombre}}</h4>
                 <div>{{producto.descripcion}}</div>
@@ -11,5 +11,5 @@
             </div>
         </div>
         <a class="posicion-btn" href="punto1#modal">🛍️</a>
-        <app-modal [productos]="carrito"></app-modal>
+        <app-modal [objetos]="carrito"></app-modal>
 </section>

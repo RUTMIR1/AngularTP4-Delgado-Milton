@@ -1,17 +1,17 @@
 <div id="modal" class="d-flex justify-content-center align-items-center modo-modal">
     <div class="container-fluid w-50 h-50 ventana-modal bg-morado2 text-center">
         <div class="overflow-y-auto contenedor-modal">
-            <div class="row" *ngFor="let prod of productos">
+            <div class="row" *ngFor="let obj of objetos">
                 <div class="col">
-                 <img class="img-fluid" src="{{prod.imagen}}" alt="imagen-producto">
+                 <img class="img-fluid" src="{{obj.imagen}}" alt="imagen-producto">
                 </div>
-                <div class="col"><b>Nombre:</b> {{prod.nombre}}</div>
-                <div class="col"> <b>Precio:</b> {{prod.precio}}$</div>
+                <div class="col"><b>Nombre:</b> {{obj.nombre}}</div>
+                <div class="col"> <b>Valor:</b> {{obj.valor}}</div>
             </div>
         </div>
         <div class="row">
-            <div class="col"><b>Total:</b> {{precioTotal(productos || [])}}$</div>
-            <div class="col"><b>Articulos:</b> {{obtenerCantidad(productos || [])}}</div>
+            <div class="col"><b>Total:</b> {{valorTotal(objetos || [])}}</div>
+            <div class="col"><b>Cantidad:</b> {{obtenerCantidad(objetos || [])}}</div>
             <div class="col d-flex justify-content-center btn-cerrar-posicion">
                 <a class="btn-cerrar" href="punto1#home-punto1">❌</a>
             </div>
