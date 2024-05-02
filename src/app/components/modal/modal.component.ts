@@ -11,19 +11,15 @@ import { Punto1Component } from '../punto1/punto1.component';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
-  @Input() productos?:Array<Producto>;
+  @Input() objetos?:Array<any>;
 
-  eventonuevo():void{
-    console.log(this.productos);
-  }
-
-  public obtenerCantidad(vector:Array<Producto>):number {
+  public obtenerCantidad(vector:Array<any>):number {
     return vector.length;
   }
-  public precioTotal(vector:Array<Producto>):number{
+  public valorTotal(vector:Array<any>):number{
     let total:number = 0;
     vector.forEach(el => {
-      total = total + el.precio;
+      total = total + el.valor;
     });
     return total;
   }

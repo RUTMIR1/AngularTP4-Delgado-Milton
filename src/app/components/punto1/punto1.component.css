@@ -48,9 +48,6 @@
     text-decoration: none;
 }
 
-.btn-cerrar-posicion{
-}
-
 .posicion-btn:hover{
     background-color: purple;
     transition: 0.5s;
