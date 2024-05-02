@@ -22,3 +22,36 @@
     background-color: #1e0039;
     color: aqua;
 }
+
+.z-index-1{
+    z-index: 1;
+}
+
+.z-index-2{
+    z-index: 2;
+    top:0;
+}
+
+.posicion-btn{
+    position: sticky;
+    left: 60px;
+    bottom: 60px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    border:2px solid black;
+    border-radius: 50%;
+    font-size: 50px;
+    text-decoration: none;
+}
+
+.btn-cerrar-posicion{
+}
+
+.posicion-btn:hover{
+    background-color: purple;
+    transition: 0.5s;
+}
