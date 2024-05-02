@@ -1,1 +1,19 @@
-<p>punto2 works!</p>
+<div class="container-fluid d-flex justify-content-center align-items-center position-relative bg-success juego-contenedor">
+    <div class="row position-absolute h-100 mt-5" *ngFor="let pal of bancoPalabras">
+        <div [id]="pal.nombre" class="row presentacion">
+            <div class="col-12">
+               ESCOJA LAS PROPIEDADES DE LA PALABRA: {{pal.nombre}}
+            </div>
+            <div class="col-6"></div>   
+            <div class="col-6"></div>
+            <div class="col-6"></div>
+            <div class="col-6"></div>
+            <div class="col-12">
+                <a [href]="'punto2#'+generarPalabraAleatoria()">SIGUIENTE</a>
+            </div>
+        </div>
+    </div>
+    <div (click)="ocultarModal()" id="juego" class="row start-modal">
+            <a [href]="'punto2#'+generarPalabraAleatoria()" > comenzar!</a>
+    </div>
+</div>
