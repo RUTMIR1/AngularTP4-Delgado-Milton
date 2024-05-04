@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { Producto } from '../../models/producto';
 import { CommonModule } from '@angular/common';
 import { Punto1Component } from '../punto1/punto1.component';
@@ -10,8 +10,9 @@ import { Punto1Component } from '../punto1/punto1.component';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
-export class ModalComponent {
+export class ModalComponent{
   @Input() objetos?:Array<any>;
+  @Input() nombre?:string;
 
   public obtenerCantidad(vector:Array<any>):number {
     return vector.length;
