@@ -10,6 +10,6 @@
                 <button [ngStyle]="{'color': producto.estado ? 'red' : ''}" [disabled]="producto.estado" (click)="producto.estado=true" (click)="agregarCarrito(producto)" type="button" class="btn btn-outline-info w-75 btn">Agregar al Carrito</button>
             </div>
         </div>
-        <a class="posicion-btn" href="punto1#modal">🛍️</a>
-        <app-modal [objetos]="carrito"></app-modal>
+        <a class="posicion-btn" [href]="nom+'#modal'">🛍️</a>
+        <app-modal [objetos]="carrito" [nombre]="nom"></app-modal>
 </section>

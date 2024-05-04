@@ -28,9 +28,10 @@ export class Punto1Component {
 
   carrito:Array<Producto> = [];
 
+  nom:string = "punto1";
+
   public agregarCarrito(producto:Producto):void{
     this.carrito.push(producto);
-    console.log(this.carrito);
   }
   public generarEstado():boolean{
     return false;
