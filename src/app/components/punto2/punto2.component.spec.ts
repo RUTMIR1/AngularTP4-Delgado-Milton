@@ -4,7 +4,7 @@ import { Punto2Component } from './punto2.component';
 
 describe('Punto2Component', () => {
   let component: Punto2Component;
-  let fixture: ComponentFixture<Punto2Component>;
+  let fixture: ComponentFixture<Punto2Component>; 
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

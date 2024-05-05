@@ -1,1 +1,71 @@
-<p>punto3 works!</p>
+<section class="row d-flex justify-content-center bg-morado3">
+    <div class="col-12 mt-5 table-responsive">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" (click)="agregar()">Registrar</button>
+        </div>
+        <table class="table table-bordered border-primary">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center" colspan="6">Tabla De Venta de Tickets</th>
+              </tr>
+              <tr>
+                <th scope="col">Dni</th>
+                <th scope="col">PrecioReal</th>
+                <th scope="col">TipoEspectador</th>
+                <th scope="col">FechaCobro</th>
+                <th scope="col">PrecioCobrado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of tickets">
+                <td>{{e.dni}}</td>
+                <td>{{e.precioReal | currency}}</td>
+                <td>{{e.tipoEspectador | tipoEspectador}}</td>
+                <td>{{e.fechaCobro | date:'dd/MM/yyyy'}}</td>
+                <td>{{e.precioCobrado | currency}}</td>
+                <td>
+                    <button type="submit" class="btn btn-success" (click)="modificar(e.id)">Modificar</button>
+                    <button type="submit" class="btn btn-danger" (click)="eliminar(e.id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</section>
+<section class="row d-flex justify-content-center bg-morado3">
+    <div class="col-6 mt-5 table-responsive">
+       <div class="bg-primary">
+        <label for="tipoEspectador" class="form-label bg-primary">Tipo de espectador:</label>
+          <select id="tipoEspectador" name="tipo" class="form-select" [(ngModel)]="opcion" (change)="obtenerFiltroPorTipo(opcion)">
+              <option value="l">Local</option>
+              <option value="e">Extranjero</option>
+          </select>
+       </div>
+        <table class="table table-bordered border-primary">
+            <thead>
+               <tr>
+                <th colspan="4">Resumen de ventas</th>
+               </tr>
+              <tr>
+                <th>Dni</th>
+                <th>TipoEspectador</th>
+                <th>FechaCobro</th>
+                <th>PrecioCobrado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of filterTickets">
+                <td>{{e.dni}}</td>
+                <td>{{e.tipoEspectador | tipoEspectador}}</td>
+                <td>{{e.fechaCobro | date:'dd/MM/yyyy'}}</td>
+                <td>{{e.precioCobrado | currency}}</td>
+              </tr>
+            </tbody>
+          </table>  
+          <div class="bg-primary rounded-2 border border-danger text-center">
+            <p>Total Recaudado por Tipo: <b> {{obtenerTotalRecaudado(filterTickets) | currency}} </b></p>
+            <p>Total Recaudado: <b> {{obtenerTotalRecaudado(tickets) | currency}} </b></p>
+         </div>        
+    </div>
+</section>
