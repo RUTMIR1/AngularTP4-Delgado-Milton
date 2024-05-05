@@ -1,16 +1,15 @@
-        <div id="home-punto2" class="position-relative container bg-primary contenedor-padre">
-            <div [ngStyle]="{'display': pal.estado ? 'block' : 'none'}" [id]="pal.nombre" class="container position-absolute h-100 w-100 bg-danger presentacion" *ngFor="let pal of bancoPalabras">
+        <div id="home-punto2" class="position-relative container contenedor-padre">
+            <div [ngStyle]="{'display': pal.estado ? 'block' : 'none'}" [id]="pal.nombre" class="m-0 container position-absolute h-100 w-100 bg-morado4 presentacion" *ngFor="let pal of bancoPalabras">
                <div class="row">
                 <div class="col-12">
-                    <div>
-                       ESCOJA LAS PROPIEDADES DE LA PALABRA: {{pal.nombre}}
+                    <div class="text-center bg-info box-palabra d-flex justify-content-center align-items-center">
+                      <h2>ESCOJA LAS PROPIEDADES DE LA PALABRA: {{pal.nombre}} </h2>
                     </div>
                 </div>
                </div>
                <div class="row">
                     <div class="row">  
-                    
-                    <div class="col-6" *ngFor=" let pe of pal.preguntas">
+                    <div class="vista rounded-2 border border-info col-6" *ngFor=" let pe of pal.preguntas">
                      <form>
                         <legend> ¿CUANTAS {{pe.titulo}} TIENE?</legend>
                         <div class="mb-3">
@@ -46,19 +45,18 @@
                             </div>
                           </div>
                           <div class="row">
-                            <button [disabled]="pe.estado"  (click)="pe.estado = true" type="submit" class="btn btn-primary">Enviar</button>
+                            <button *ngIf="pe.estado==false"  (click)="pe.estado = true" type="submit" class="btn btn-success">Confirmar</button>
+                            <button disabled *ngIf="pe.estado==true"  (click)="pe.estado = true" type="submit" class="btn btn-danger">Listo!</button>
                         </div>
                       </form>                        
                     </div> 
                 </div>  
             </div> 
             <div class="row bg-black">
-                <div class="col-12">
-                    <a (click)="mostrarJuego(pal.identificador)">SIGUIENTE</a>
-                </div>
+              <button type="submit" class="btn btn-dark" (click)="mostrarJuego(pal.identificador)">SIGUIENTE</button>
             </div>
-            <div *ngIf="estado" class="row">
-                <a [href]="nom+'#modal'" class="bg-success"> ver resultados</a>
+            <div *ngIf="estado" class="row text-center bg-danger">
+                <a [href]="nom+'#modal'" class=""> VER RESULTADOS</a>
             </div>
     </div>
     <div class="row">
