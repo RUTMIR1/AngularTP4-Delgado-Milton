@@ -1,0 +1,29 @@
+<div class="row mt-5">
+    <form class="bg-primary">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Dni:</label>
+          <input name="dni" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="ticket.dni">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">PrecioReal: </label>
+          <input name="pReal" type="number" class="form-control" id="exampleInputPassword1" [(ngModel)]="ticket.precioReal" (change)="aplicarDescuento()">
+        </div>
+        <div class="mb-3">
+          <label for="tipoEspectador" class="form-label">Tipo de espectador:</label>
+          <select id="tipoEspectador" name="tipo" class="form-select" [(ngModel)]="ticket.tipoEspectador" (change)="aplicarDescuento()">
+              <option value="l">Local</option>
+              <option value="e">Extranjero</option>
+          </select>
+      </div>
+        <div class="mb-3">
+            <label for="sugundo" class="form-label">FechaCobro:</label>
+            <input name="fCobro" type="date" class="form-control" id="segundo" [(ngModel)]="ticket.fechaCobro">
+        </div>
+        <div *ngIf="condicionEstado(estado)" class="mb-3">
+            <label for="primero" class="form-label">PrecioCobrado: </label>
+            <input name="pCobrado" class="form-control" id="primero" [(ngModel)]="ticket.precioCobrado" disabled (change)="aplicarDescuento()">
+        </div>
+        <button *ngIf="accion == 'new'" type="submit" class="btn btn-primary bg-success" (click)="guardarTicket()">Agregar</button>
+        <button *ngIf="accion == 'update'" type="submit" class="btn btn-primary bg-success" (click)="actualizarTicket()">Modificar</button>
+      </form>
+</div>

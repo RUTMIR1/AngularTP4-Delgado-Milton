@@ -1,1 +1,63 @@
-<p>punto3 works!</p>
+<section class="row">
+    <div class="col-6 mt-5 bg-success">
+        <table>
+            <thead>
+              <tr>
+                <th>Dni</th>
+                <th>PrecioReal</th>
+                <th>TipoEspectador</th>
+                <th>FechaCobro</th>
+                <th>PrecioCobrado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of tickets">
+                <td>{{e.dni}}</td>
+                <td>{{e.precioReal | currency}}</td>
+                <td>{{e.tipoEspectador | tipoEspectador}}</td>
+                <td>{{e.fechaCobro | date:'dd/MM/yyyy'}}</td>
+                <td>{{e.precioCobrado | currency}}</td>
+                <td>
+                    <button type="submit" class="btn btn-primary" (click)="modificar(e.id)">Modificar</button>
+                    <button type="submit" class="btn btn-primary" (click)="eliminar(e.id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="submit" class="btn btn-primary" (click)="agregar()">Registrar</button>
+    </div>
+</section>
+<section class="row">
+    <div class="col-6 mt-5 bg-success">
+        <label for="tipoEspectador" class="form-label">Tipo de espectador:</label>
+          <select id="tipoEspectador" name="tipo" class="form-select" [(ngModel)]="opcion" (change)="obtenerFiltroPorTipo(opcion)">
+              <option value="l">Local</option>
+              <option value="e">Extranjero</option>
+          </select>
+        <table>
+            <thead>
+              <tr>
+                <th>Dni</th>
+                <th>TipoEspectador</th>
+                <th>FechaCobro</th>
+                <th>PrecioCobrado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of filterTickets">
+                <td>{{e.dni}}</td>
+                <td>{{e.tipoEspectador | tipoEspectador}}</td>
+                <td>{{e.fechaCobro | date:'dd/MM/yyyy'}}</td>
+                <td>{{e.precioCobrado | currency}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+             Total Recaudado por Tipo: {{obtenerTotalRecaudado(filterTickets) | currency}}   
+          </div>
+          <div>
+            Total Recaudado: {{obtenerTotalRecaudado(tickets) | currency}}
+          </div>
+    </div>
+</section>
