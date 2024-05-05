@@ -41,6 +41,7 @@ export class Punto3Component {
   eliminar(id:number):void{
     this.ticketService.delete(id);
     this.obtenerTickets();
+    this.obtenerFiltroPorTipo(this.opcion);
   }
   obtenerFiltroPorTipo(opcion:string):void{
     this.filterTickets = this.ticketService.filterByTipo(opcion);
