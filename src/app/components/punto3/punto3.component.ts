@@ -31,7 +31,6 @@ export class Punto3Component {
 
   agregar():void{
     this.router.navigate(['punto3-formulario']);
-    console.log(this.tickets);
   }
 
   modificar(id:number):void{
@@ -44,7 +43,9 @@ export class Punto3Component {
     this.obtenerFiltroPorTipo(this.opcion);
   }
   obtenerFiltroPorTipo(opcion:string):void{
-    this.filterTickets = this.ticketService.filterByTipo(opcion);
+    if(opcion != ""){
+      this.filterTickets = this.ticketService.filterByTipo(opcion);
+    }
   }
 
   obtenerTotalRecaudado(tickets:Array<Ticket>):number{
@@ -52,6 +53,22 @@ export class Punto3Component {
     for(let e of tickets) {
       total = total + e.precioCobrado;
     }
-    return total;
+    return total; 
+  }
+  aplicarPrecioCobrado():void{
+    for(let e of this.tickets){
+      if(e.tipoEspectador == "l"){
+        e.precioCobrado = e.precioReal-(e.precioReal*0.2);
+      }else{
+        e.precioCobrado = e.precioReal;
+      }
+    }
+    for(let e of this.filterTickets){
+      if(e.tipoEspectador == "l"){
+        e.precioCobrado = e.precioReal-(e.precioReal*0.2);
+      }else{
+        e.precioCobrado = e.precioReal;
+      }
+    }
   }
 }

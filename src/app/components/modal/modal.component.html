@@ -6,15 +6,15 @@
                  <img class="img-fluid" src="{{obj.imagen}}" alt="imagen-producto">
                 </div>
                 <div class="col"><b>Nombre:</b> {{obj.nombre}}</div>
-                <div class="col"> <b>Valor:</b> {{obj.valor}}</div>
+                <div class="col"> <b>Valor:</b> {{obj.valor | tipoValor}}</div>
             </div>
         </div>
         <div class="row">
-            <div class="col"><b>Total:</b> {{valorTotal(objetos || [])}}</div>
+            <div class="col"><b>Total:</b> {{valorTotal(objetos || []) | tipoValor}}</div>
             <div class="col"><b>Cantidad:</b> {{obtenerCantidad(objetos || [])}}</div>
             <div class="col d-flex justify-content-center btn-cerrar-posicion">
                 <a class="btn-cerrar" [href]="nombre+'#home-'+nombre">❌</a>
             </div>
-        </div> 
+        </div>
     </div>
 </div>
