@@ -2,13 +2,14 @@ import { Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angul
 import { Producto } from '../../models/producto';
 import { CommonModule } from '@angular/common';
 import { Punto1Component } from '../punto1/punto1.component';
+import { TipoValorPipe } from "../../pipes/tipo-valor.pipe";
 
 @Component({
-  selector: 'app-modal',
-  standalone: true,
-  imports: [CommonModule, Punto1Component],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+    selector: 'app-modal',
+    standalone: true,
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.css',
+    imports: [CommonModule, Punto1Component, TipoValorPipe]
 })
 export class ModalComponent{
   @Input() objetos?:Array<any>;

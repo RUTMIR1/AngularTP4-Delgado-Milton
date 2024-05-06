@@ -3,3 +3,12 @@ ul{
     margin: 0;
     padding: 0;
 }
+
+.bg-nav{
+    color: aliceblue !important;
+    background-color: rgb(118, 89, 146);
+}
+
+.margin-left{
+    margin-left: 50px;
+}

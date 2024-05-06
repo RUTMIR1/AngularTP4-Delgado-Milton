@@ -11,8 +11,11 @@ export class TicketService {
   constructor() {
     this.tickets = new Array<Ticket>();
     this.nuevoId = 1;
-    let e:Ticket = new Ticket(this.nuevoId,3213,42,"e",new Date(2024, 3, 20),32);
+    let e:Ticket = new Ticket(this.nuevoId,45543532,4000,"e",new Date(2024, 3, 20),4000);
     this.tickets.push(e);
+    this.nuevoId += 1;
+    let segundo:Ticket = new Ticket(this.nuevoId,43790454,4000,"l",new Date(2024, 5, 1),3200);
+    this.tickets.push(segundo);
   } 
 
   create(ticket:Ticket):void{
