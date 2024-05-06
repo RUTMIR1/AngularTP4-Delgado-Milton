@@ -1,20 +1,32 @@
-<div id="modal" class="d-flex justify-content-center align-items-center modo-modal">
-    <div class="container-fluid w-50 h-50 ventana-modal bg-morado2 text-center">
-        <div class="overflow-y-auto contenedor-modal">
-            <div class="row" *ngFor="let obj of objetos">
-                <div class="col">
-                 <img class="img-fluid" src="{{obj.imagen}}" alt="imagen-producto">
-                </div>
-                <div class="col"><b>Nombre:</b> {{obj.nombre}}</div>
-                <div class="col"> <b>Valor:</b> {{obj.valor | tipoValor}}</div>
+<div id="modal" class="modal fade" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content container-fluid w-100 h-70 bg-morado2 text-center">
+            <div class="modal-header">
+                <h5 class="modal-title">Registro</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-        </div>
-        <div class="row">
-            <div class="col"><b>Total:</b> {{valorTotal(objetos || []) | tipoValor}}</div>
-            <div class="col"><b>Cantidad:</b> {{obtenerCantidad(objetos || [])}}</div>
-            <div class="col d-flex justify-content-center btn-cerrar-posicion">
-                <a class="btn-cerrar" [href]="nombre+'#home-'+nombre">❌</a>
+            <div class="modal-body">
+                    <div class="contenedor-modal">
+                        <div class="row" *ngFor="let obj of objetos">
+                            <div class="col">
+                             <img class="img-fluid" src="{{obj.imagen}}" alt="imagen-producto">
+                            </div>
+                            <div class="col"><b>Nombre:</b> {{obj.nombre}}</div>
+                            <div class="col"> <b>Valor:</b> {{obj.valor | tipoValor}}</div>
+                        </div>
+                    </div>
+            </div>
+             <div class="modal-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col"><b>Total:</b> {{valorTotal(objetos || []) | tipoValor}}</div>
+                        <div class="col"><b>Cantidad:</b> {{obtenerCantidad(objetos || [])}}</div>
+                        <div class="col d-flex justify-content-center btn-cerrar-posicion">
+                            <button class="btn-cerrar" data-bs-dismiss="modal">❌</button>
+                        </div>
+                    </div>
+                </div>
+             </div>
             </div>
         </div>
     </div>
-</div>

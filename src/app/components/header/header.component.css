@@ -12,3 +12,7 @@ ul{
 .margin-left{
     margin-left: 50px;
 }
+
+header{
+   border-bottom: 4px solid #000;
+}
