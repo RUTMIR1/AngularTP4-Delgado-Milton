@@ -23,6 +23,8 @@ export class Punto2Component implements OnInit {
   listaRespuesta!:Array<number>;
   nom:string = "punto2";
   estado: boolean = false;
+  condicion:boolean = false;
+  emitidas: number = 0;
 
   constructor(){
     this.palabra = new Palabra(0,"","",0,0,0,0,0,[]);
@@ -40,9 +42,8 @@ export class Punto2Component implements OnInit {
       new Palabra(0,"assets/images/jirafa.png", "jirafa", 0, 3, 3, 3, 6,this.generarListaPreguntas())
     ];
     this.agregarValores();
-    console.log(this.bancoPalabras);
     this.bancoPalabras = this.ordenarAleatorio(this.bancoPalabras);
-    console.log(this.bancoPalabras);
+    this.noRepetidos();
   }
 
   ordenarAleatorio(lista:Array<Palabra>):Array<Palabra>{
@@ -70,6 +71,7 @@ export class Punto2Component implements OnInit {
   }
 
   mostrarJuego(id:number):void{
+    this.emitidas = 0;
     if(id >= 7){
       this.registrarRespuesta(this.bancoPalabras);
       this.estado = true;
@@ -111,7 +113,7 @@ export class Punto2Component implements OnInit {
       new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Constantes",0),
       new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Silabas",0),
       new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Letras",0),
-    ]
+    ];
     return preguntas;
   }
 
@@ -130,7 +132,7 @@ export class Punto2Component implements OnInit {
   }
 
   generarNumero():number{
-    return Math.floor((Math.random() * 10)+1);
+    return Math.floor((Math.random() * 15)+1);
   }
 
   aumentarNumeracion():number{
@@ -164,6 +166,35 @@ export class Punto2Component implements OnInit {
                   }
               break;
           }
+      }
+    }
+  }
+  cambiarCondicion():boolean{
+    if(this.emitidas == 4){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  aumentarEmitidas():void{
+    this.emitidas = this.emitidas +1;
+  }
+
+  noRepetidos():void{
+    for(let e of this.bancoPalabras){
+      for(let elem of e.preguntas){
+        while(elem.preguntaA == elem.preguntaB || elem.preguntaA == elem.preguntaC || elem.preguntaA == elem.preguntaD ){
+           elem.preguntaA = this.generarNumero(); 
+        }
+        while(elem.preguntaB == elem.preguntaA || elem.preguntaB == elem.preguntaC || elem.preguntaB == elem.preguntaD ){
+          elem.preguntaB = this.generarNumero(); 
+       }
+       while(elem.preguntaC == elem.preguntaA || elem.preguntaC == elem.preguntaB || elem.preguntaC == elem.preguntaD ){
+        elem.preguntaC = this.generarNumero(); 
+       }
+       while(elem.preguntaD == elem.preguntaB || elem.preguntaD == elem.preguntaC || elem.preguntaD == elem.preguntaA ){
+        elem.preguntaA = this.generarNumero(); 
+       }
       }
     }
   }

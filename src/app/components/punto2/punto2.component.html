@@ -14,7 +14,7 @@
                         <legend> ¿CUANTAS {{pe.titulo}} TIENE?</legend>
                         <div class="mb-3">
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" [name]="'{{pe.id}}'" [value]="pe.preguntaA" [(ngModel)]="pe.respuesta">
+                            <input [disabled]="pe.estado" class="form-check-input" type="radio" [name]="'{{pe.id}}'" [value]="pe.preguntaA" [(ngModel)]="pe.respuesta">
                             <label class="form-check-label" >
                                 {{pe.preguntaA}}
                             </label>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                              <input class="form-check-input" type="radio"  [name]="'{{pe.id}}'" [value]="pe.preguntaB" [(ngModel)]="pe.respuesta">
+                              <input [disabled]="pe.estado" class="form-check-input" type="radio"  [name]="'{{pe.id}}'" [value]="pe.preguntaB" [(ngModel)]="pe.respuesta">
                               <label class="form-check-label" >
                                   {{pe.preguntaB}}
                               </label>
@@ -30,7 +30,7 @@
                           </div>
                           <div class="mb-3">
                             <div class="form-check">
-                              <input class="form-check-input" type="radio"  [name]="'{{pe.id}}'" [value]="pe.preguntaC" [(ngModel)]="pe.respuesta">
+                              <input [disabled]="pe.estado" class="form-check-input" type="radio"  [name]="'{{pe.id}}'" [value]="pe.preguntaC" [(ngModel)]="pe.respuesta">
                               <label class="form-check-label" >
                                   {{pe.preguntaC}}
                               </label>
@@ -38,30 +38,30 @@
                           </div>
                           <div class="mb-3">
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" [name]="'{{punto}}'" [value]="pe.preguntaD" [(ngModel)]="pe.respuesta">
+                              <input [disabled]="pe.estado" class="form-check-input" type="radio" [name]="'{{punto}}'" [value]="pe.preguntaD" [(ngModel)]="pe.respuesta">
                               <label class="form-check-label" >
                                   {{pe.preguntaD}}
                               </label>
                             </div>
                           </div>
                           <div class="row">
-                            <button *ngIf="pe.estado==false"  (click)="pe.estado = true" type="submit" class="btn btn-success">Confirmar</button>
+                            <button *ngIf="pe.estado==false" (click)="aumentarEmitidas()" (click)="pe.estado = true" type="submit" class="btn btn-success">Confirmar</button>
                             <button disabled *ngIf="pe.estado==true"  (click)="pe.estado = true" type="submit" class="btn btn-danger">Listo!</button>
                         </div>
-                      </form>                        
+                      </form> 
                     </div> 
                 </div>  
             </div> 
             <div class="row bg-black">
-              <button type="submit" class="btn btn-dark" (click)="mostrarJuego(pal.identificador)">SIGUIENTE</button>
+              <button [ngStyle]="{'background-color': cambiarCondicion() ? '' : 'blue'}"  [disabled]="cambiarCondicion()" type="submit" class="btn btn-dark" (click)="mostrarJuego(pal.identificador)">SIGUIENTE</button>
             </div>
             <div *ngIf="estado" class="row text-center bg-danger">
-                <a [href]="nom+'#modal'" class=""> VER RESULTADOS</a>
+              <button class="btn-danger" data-bs-toggle="modal" data-bs-target="#modal">Ver Resultados!</button>
             </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <a (click)="ocultarModal()" id="juego" class="start-modal position-absolute" >
+            <a (click)="ocultarModal()" id="juego" class="start-modal position-absolute">
              <img class="h-50 w-50" src="assets/images/play.png" alt="imagen de play">
              </a>
         </div>  
