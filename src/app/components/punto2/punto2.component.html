@@ -2,7 +2,8 @@
             <div [ngStyle]="{'display': pal.estado ? 'block' : 'none'}" [id]="pal.nombre" class="m-0 container position-absolute h-100 w-100 bg-morado4 presentacion" *ngFor="let pal of bancoPalabras">
                <div class="row">
                 <div class="col-12">
-                    <div class="text-center bg-info box-palabra d-flex justify-content-center align-items-center">
+                    <div class=" mt-4 text-center bg-info box-palabra justify-content-center align-items-center">
+                      <h4>{{contador}}/8</h4>
                       <h2>ESCOJA LAS PROPIEDADES DE LA PALABRA: {{pal.nombre}} </h2>
                     </div>
                 </div>
@@ -53,7 +54,7 @@
                 </div>  
             </div> 
             <div class="row bg-black">
-              <button [ngStyle]="{'background-color': cambiarCondicion() ? '' : 'blue'}"  [disabled]="cambiarCondicion()" type="submit" class="btn btn-dark" (click)="mostrarJuego(pal.identificador)">SIGUIENTE</button>
+              <button [ngStyle]="{'background-color': cambiarCondicion() ? '' : 'blue'}"  [disabled]="cambiarCondicion()" type="submit" class="btn btn-dark" (click)="aumentarContador()" (click)="mostrarJuego(pal.identificador)">SIGUIENTE</button>
             </div>
             <div *ngIf="estado" class="row text-center bg-danger">
               <button class="btn-danger" data-bs-toggle="modal" data-bs-target="#modal">Ver Resultados!</button>

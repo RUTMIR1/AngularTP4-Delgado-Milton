@@ -25,6 +25,7 @@ export class Punto2Component implements OnInit {
   estado: boolean = false;
   condicion:boolean = false;
   emitidas: number = 0;
+  contador: number = 1;
 
   constructor(){
     this.palabra = new Palabra(0,"","",0,0,0,0,0,[]);
@@ -196,6 +197,11 @@ export class Punto2Component implements OnInit {
         elem.preguntaA = this.generarNumero(); 
        }
       }
+    }
+  }
+  aumentarContador():void{
+    if(this.contador <= 7){
+      this.contador +=1;
     }
   }
 }
