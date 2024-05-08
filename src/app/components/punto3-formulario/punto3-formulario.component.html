@@ -8,7 +8,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label"><b>PrecioReal:</b></label>
-          <input name="pReal" type="number" class="form-control border border-info" id="exampleInputPassword1" [(ngModel)]="ticket.precioReal" (change)="aplicarDescuento()">
+          <input name="pReal" type="number" class="form-control border border-info" id="exampleInputPassword1" [(ngModel)]="ticket.precioReal" (change)="aplicarDescuento()" disabled>
         </div>
         <div class="mb-3">
           <label for="tipoEspectador" class="form-label"><b>Tipo de espectador:</b></label>
@@ -21,9 +21,9 @@
             <label for="sugundo" class="form-label"><b>FechaCobro:</b></label>
             <input name="fCobro" type="date" class="form-control border border-info" id="segundo" [(ngModel)]="ticket.fechaCobro">
         </div>
-        <div *ngIf="condicionEstado(estado)" class="mb-3 bg-info">
+        <div *ngIf="condicionEstado()" class="mb-3 bg-info">
             <label for="primero" class="form-label">PrecioCobrado: </label>
-            <input name="pCobrado" class="form-control bg-info" id="primero" [(ngModel)]="ticket.precioCobrado" disabled (change)="aplicarDescuento()">
+            <input name="pCobrado" class="form-control bg-info" id="primero" [(ngModel)]="ticket.precioCobrado" (change)="aplicarDescuento()" disabled>
         </div>
         <div class="text-center">
           <button *ngIf="accion == 'new'" type="submit" class="btn btn-primary bg-primary mb-3" (click)="guardarTicket()">Agregar</button>

@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Palabra } from '../../models/palabra';
 import { CommonModule } from '@angular/common';
-import { style } from '@angular/animations';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { Pregunta } from '../../models/pregunta';
 import { ModalComponent } from '../modal/modal.component';
 
@@ -13,22 +12,15 @@ import { ModalComponent } from '../modal/modal.component';
   templateUrl: './punto2.component.html',
   styleUrl: './punto2.component.css'
 })
-export class Punto2Component implements OnInit {
-  palabra!:Palabra;
-  cajaJuego!: HTMLElement | null;
-  preguntas:Array<Array<Pregunta>> = [];
+export class Punto2Component{
+  nom:string = "Resultados!";
   bancoPalabras:Array<Palabra>;
   numeracion:number;
-  respuesta!:Pregunta;
-  listaRespuesta!:Array<number>;
-  nom:string = "punto2";
   estado: boolean = false;
   condicion:boolean = false;
   emitidas: number = 0;
   contador: number = 1;
-
   constructor(){
-    this.palabra = new Palabra(0,"","",0,0,0,0,0,[]);
     this.numeracion = 0;
     this.bancoPalabras= [
       new Palabra(0,"assets/images/manzana.png","manzana",0,3,4,3,7,this.generarListaPreguntas()),
@@ -43,45 +35,26 @@ export class Punto2Component implements OnInit {
       new Palabra(0,"assets/images/jirafa.png", "jirafa", 0, 3, 3, 3, 6,this.generarListaPreguntas())
     ];
     this.agregarValores();
-    this.bancoPalabras = this.ordenarAleatorio(this.bancoPalabras);
+    this.bancoPalabras = this.ordenarAleatorio();
     this.noRepetidos();
+    console.log(this.bancoPalabras);
   }
-
-  ordenarAleatorio(lista:Array<Palabra>):Array<Palabra>{
-    let nuevaLista:Array<Palabra>=[];
-    let guardo:string;
-    for(let i = 0; i < 8; i++){
-      let aleat:string = this.generarPalabraAleatoria();
-      for(let j =0;j < lista.length; j++){
-        if( lista[j].nombre == aleat){
-          lista[j].identificador = i;
-          if(i==0){
-            lista[j].estado = true;
-          }
-          let pal:Palabra = new Palabra(lista[j].identificador,lista[j].imagen
-            ,lista[j].nombre,lista[j].valor,lista[j].vocal,lista[j].constante,
-            lista[j].silaba,lista[j].letra,lista[j].preguntas);
-            pal.estado = lista[j].estado;
-          nuevaLista.push(pal);
-          lista[j].nombre = "";
-          j = lista.length;
-        }
-      }
-    }
-    return nuevaLista;
+  generarListaPreguntas():Array<Pregunta>{
+    let preguntas = [
+      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Vocales",0),
+      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Constantes",0),
+      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Silabas",0),
+      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Letras",0),
+    ];
+    return preguntas;
   }
-
-  mostrarJuego(id:number):void{
-    this.emitidas = 0;
-    if(id >= 7){
-      this.registrarRespuesta(this.bancoPalabras);
-      this.estado = true;
-    }else{
-      this.bancoPalabras[id].estado = false;
-      this.bancoPalabras[id+1].estado = true;
-    }
+  aumentarNumeracion():number{
+    this.numeracion +=1;
+    return this.numeracion;
   }
-
+  generarNumero():number{
+    return Math.floor((Math.random() * 15)+1);
+  }
   agregarValores():void{
     for(let i=0 ; i < 10 ; i++) {
       let listaValores:Array<number> = [this.bancoPalabras[i].vocal, this.bancoPalabras[i].constante,
@@ -105,43 +78,46 @@ export class Punto2Component implements OnInit {
       }
     }
   }
-  ngOnInit(): void {
-
-  }
-  generarListaPreguntas():Array<Pregunta>{
-    let preguntas = [
-      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Vocales",0),
-      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Constantes",0),
-      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Silabas",0),
-      new Pregunta(this.aumentarNumeracion(),this.generarNumero(),this.generarNumero(),this.generarNumero(),this.generarNumero(),"Letras",0),
-    ];
-    return preguntas;
-  }
-
-  generarPalabraAleatoria():string{
-    let nom:string = "";
-    while(nom == ""){
-      nom = this.bancoPalabras[Math.floor(Math.random() * (this.bancoPalabras.length))].nombre;
+  ordenarAleatorio():Array<Palabra>{
+    let nuevaLista:Array<Palabra>=[];
+    let posiciones:Array<number>=[];
+    let aleatorio:number;
+    let aviso: boolean;
+    let id: number = 0;
+    for(let i = 0; i < 8; i++){
+      do{
+        aviso = false;
+        aleatorio = Math.floor(Math.random()* 10);
+        for(let e of posiciones){
+          if(e == aleatorio){
+            aviso = true;
+          }
+        }
+      }while(aviso);
+      posiciones.push(aleatorio);
     }
-    console.log(nom);
-    return nom;
+    for(let j of posiciones){
+      this.bancoPalabras[j].identificador = id;
+      nuevaLista.push(this.bancoPalabras[j]);
+      id++;
+    }
+    nuevaLista[0].estado = true;
+    return nuevaLista;
   }
-  
+  mostrarJuego(id:number):void{
+    this.emitidas = 0;
+    if(id >= 7){
+      this.registrarRespuesta(this.bancoPalabras);
+      this.estado = true;
+    }else{
+      this.bancoPalabras[id].estado = false;
+      this.bancoPalabras[id+1].estado = true;
+    }
+  }
   ocultarModal(): void{
-    this.cajaJuego = document.getElementById("juego");
-    this.cajaJuego!.style.display = "none";
+    let cajaJuego = document.getElementById("juego");
+    cajaJuego!.style.display = "none";
   }
-
-  generarNumero():number{
-    return Math.floor((Math.random() * 15)+1);
-  }
-
-  aumentarNumeracion():number{
-    this.numeracion +=1;
-    console.log(this.numeracion);
-    return this.numeracion;
-  }
-
   registrarRespuesta(lista:Array<Palabra>):void{
     for(let e of lista){
       for(let j of e.preguntas){
@@ -180,7 +156,6 @@ export class Punto2Component implements OnInit {
   aumentarEmitidas():void{
     this.emitidas = this.emitidas +1;
   }
-
   noRepetidos():void{
     for(let e of this.bancoPalabras){
       for(let elem of e.preguntas){
