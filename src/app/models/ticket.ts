@@ -6,12 +6,12 @@ export class Ticket {
     fechaCobro:Date;
     precioCobrado: number;
 
-    constructor(id:number,dni:number, precioReal:number, tipoEspectador:string, fechaCobro:Date, precioCobrado:number) {
-        this.id = id;
-        this.dni = dni;
-        this.precioReal = precioReal;
-        this.tipoEspectador = tipoEspectador;
-        this.fechaCobro = fechaCobro;
-        this.precioCobrado = precioCobrado;
+    constructor(dni?:number, tipoEspectador?:string, fechaCobro?:Date) {
+        this.id = 0;
+        this.dni = dni?? 0;
+        this.precioReal = 5000;
+        this.tipoEspectador = tipoEspectador?? "";
+        this.fechaCobro = fechaCobro?? new Date();
+        this.precioCobrado = 5000;
     }
 }

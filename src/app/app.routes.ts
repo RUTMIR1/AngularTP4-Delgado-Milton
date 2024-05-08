@@ -10,5 +10,6 @@ export const routes: Routes = [
     {path: 'punto2', component:Punto2Component},
     {path: 'punto3', component: Punto3Component},
     {path: 'punto3-formulario', component: Punto3FormularioComponent},
-    {path: 'punto3-formulario/:id', component: Punto3FormularioComponent}
+    {path: 'punto3-formulario/:id', component: Punto3FormularioComponent},
+    {path: '**', component: Punto1Component}
 ];

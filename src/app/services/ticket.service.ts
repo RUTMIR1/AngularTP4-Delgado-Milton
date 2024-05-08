@@ -6,15 +6,19 @@ import { Ticket } from '../models/ticket';
 })
 export class TicketService {
 
-  tickets!:Array<Ticket>;
+  tickets:Array<Ticket>;
   nuevoId: number;
   constructor() {
     this.tickets = new Array<Ticket>();
     this.nuevoId = 1;
-    let e:Ticket = new Ticket(this.nuevoId,45543532,4000,"e",new Date(2024, 3, 20),4000);
+    let e:Ticket = new Ticket(45543532,"e",new Date(2024, 3, 20));
+    e.id = this.nuevoId;
+    e.precioCobrado = 5000;
     this.tickets.push(e);
     this.nuevoId += 1;
-    let segundo:Ticket = new Ticket(this.nuevoId,43790454,4000,"l",new Date(2024, 5, 1),3200);
+    let segundo:Ticket = new Ticket(43790454,"l",new Date(2024, 5, 1));
+    segundo.id = this.nuevoId;
+    segundo.precioCobrado = 4000;
     this.tickets.push(segundo);
   } 
 
@@ -25,7 +29,7 @@ export class TicketService {
   }
 
   getTicketById(id:number):Ticket{
-    let ticket:Ticket = new Ticket(0,0,0,"",new Date(),0);
+    let ticket:Ticket = new Ticket();
     let indexTicket:number = this.tickets.findIndex(t => t.id == id);
     ticket = this.tickets[indexTicket];
     return ticket;
@@ -39,10 +43,10 @@ export class TicketService {
     this.tickets = this.tickets.filter(ticket => ticket.id !== id);
   }
 
-  update(updatedTicket: Ticket): void {
-    const index = this.tickets.findIndex(ticket => ticket.id == updatedTicket.id);
-    if (index !== -1) {
-      this.tickets[index] = updatedTicket;
+  update(ticketActualizado: Ticket): void {
+    const index = this.tickets.findIndex(ticket => ticket.id == ticketActualizado.id);
+    if(index != -1){
+      this.tickets[index] = ticketActualizado;
     }
   }
   filterByTipo(tipo:string): Array<Ticket>{

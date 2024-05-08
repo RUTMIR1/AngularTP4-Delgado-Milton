@@ -21,9 +21,8 @@ export class Punto3Component {
   constructor(private ticketService: TicketService, private router: Router) {
       this.tickets = new Array<Ticket>();
       this.obtenerTickets();
-      this.opcion = "e";
+      this.opcion = "";
       this.filterTickets = new Array<Ticket>();
-      this.obtenerFiltroPorTipo(this.opcion);
   }
   obtenerTickets():void{
     this.tickets = this.ticketService.getTickets();
@@ -54,21 +53,5 @@ export class Punto3Component {
       total = total + e.precioCobrado;
     }
     return total; 
-  }
-  aplicarPrecioCobrado():void{
-    for(let e of this.tickets){
-      if(e.tipoEspectador == "l"){
-        e.precioCobrado = e.precioReal-(e.precioReal*0.2);
-      }else{
-        e.precioCobrado = e.precioReal;
-      }
-    }
-    for(let e of this.filterTickets){
-      if(e.tipoEspectador == "l"){
-        e.precioCobrado = e.precioReal-(e.precioReal*0.2);
-      }else{
-        e.precioCobrado = e.precioReal;
-      }
-    }
   }
 }
